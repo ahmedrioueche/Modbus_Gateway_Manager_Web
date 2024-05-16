@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gateway Manager</title>
+    <link rel="stylesheet" href="../../../index.css" />
+    <script type="module" src="../../controller/main/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar main">
+            <div class="logo">
+                <div class="top">DOOFAS</div>
+                <div class="bottom">Innovative Solutions</div>
+            </div>
+            <ul>
+                <li class="clickable">Configure</li>
+                <li class="clickable">Diagnose</li>
+                <li class="clickable">Settings</li>
+                <li class="clickable">Help</li>
+            </ul>
+        </div>
+        <div class="device-container">
+            <h1>MODBUS Gateway Manager</h1>
+            <div class="table">
+                <div class="table-header">
+                    <div class="column" id="column-1">ID</div>
+                    <div class="column" id="column-2">Name</div>
+                    <div class="column" id="column-3">IP</div>
+                    <div class="column" id="column-4">MAC</div>
+                    <div class="column" id="column-5">Status</div>
+                </div>
+                <div class="table-rows" id="device-container">
+                    <div class="table-row">
+                        <div class="column" id="column-1">11FF</div>
+                        <div class="column" id="column-2">Modbus Gateway</div>
+                        <div class="column" id="column-3">192.168.2.5</div>
+                        <div class="column" id="column-4">3F:5C:DD:56:33:11</div>
+                        <div class="column" id="column-5">Active</div>
+                    </div>  
+            </div>
+        </div>        
+    </div>
+</body>
+</html>

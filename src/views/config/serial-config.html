@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Configuration</title>
+    <link rel="stylesheet" />
+    <link rel="stylesheet" href="../../../index.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script defer src="../../controller/config/serial-config.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">
+                <div class="top">DOOFAS</div>
+                <div class="bottom">Innovative Solutions</div>
+            </div>
+            <ul>
+                <li class="disabled">General</li>
+                <li class="disabled">Mode</li>
+                <li class="selected">Serial</li>
+                <li class="disabled">Network</li>
+            </ul>
+        </div>
+
+        <div class="config-content">
+            <h2>Configure Serial</h2>
+
+            <div class="input-list">
+                <div class="input-item">
+                    <label class="input-label">Baudrate</label>
+                    <select id="select-baud" class="select-field">
+                        <option>2400</option>
+                        <option selected>9600</option>
+                        <option >19200</option>
+                        <option>38400</option>
+                        <option>115200</option>
+                    </select>
+                </div>
+                <div class="input-item">
+                    <label class="input-label">Parity</label>
+                    <select id="select-parity" class="select-field">
+                        <option selected >None</option>
+                        <option >Odd</option>
+                        <option >Even</option>
+                    </select>
+                </div>  
+                <div class="input-item">
+                    <label class="input-label">Stop bits</label>
+                    <select id="select-stopbits" class="select-field">
+                        <option selected>1</option>
+                        <option>2</option>
+                    </select>
+                </div>
+                <div class="input-item">
+                    <label class="input-label">Data size</label>
+                    <select id="select-datasize" class="select-field">
+                        <option selected>8</option>
+                        <option>9</option>
+                    </select>
+                </div>
+                <div class="input-item slave-item">
+                    <label class="input-label" for="slave-id" ><span class="slave" id="slave-id-span">Slave address</span></label>
+                    <input type="text" id="slave-id" class="input-field" placeholder="example:5">
+                </div>
+            </div>
+            <div class="button-container button-config">
+                <button class="button left-button" id="next-button">Next</button>
+                <button class="button right-button" id="previous-button">Previous</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

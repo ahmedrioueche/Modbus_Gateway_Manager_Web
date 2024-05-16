@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Configuration</title>
+    <link rel="stylesheet" />
+    <link rel="stylesheet" href="../../../index.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script defer src="../../controller/config/network-config.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">
+                <div class="top">DOOFAS</div>
+                <div class="bottom">Innovative Solutions</div>
+            </div>
+            <ul>
+                <li class="disabled">General</li>
+                <li class="disabled">Mode</li>
+                <li class="disabled">Serial</li>
+                <li class="selected">Network</li>
+            </ul>
+        </div>
+
+        <div class="config-content">
+            <h2>Configure Network</h2>
+
+            <div class="input-list">
+                <div class="input-item">
+                    <label class="input-label" for="input1">IP address</label>
+                    <input type="text" id="input1" class="input-field" placeholder="example:192.168.1.5">
+                </div>
+
+                <div class="input-item">
+                    <label class="input-label" for="input2">Netmask</label>
+                    <input type="text" id="input2" class="input-field" placeholder="example:255.255.255.0">
+                </div>
+
+                <div class="input-item">
+                    <label class="input-label" for="input3">Gateway</label>
+                    <input type="text" id="input3" class="input-field" placeholder="example:192.168.1.1">
+                </div>
+            </div>
+            
+            <div class="button-container button-config">
+                <button class="button left-button" id="save-button">save & exit</button>
+                <button class="button right-button" id="previous-button">Previous</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
