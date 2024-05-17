@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>Configuration</title>
-    <link rel="stylesheet" href="../../../index.css" />
+    <link rel="stylesheet" href="../../index.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script defer src="../../controller/config/general-config.js"></script>
 </head>
@@ -13,8 +13,10 @@
     <div class="container">
         <div class="sidebar">
             <div class="logo">
-                <div class="top">DOOFAS</div>
-                <div class="bottom">Innovative Solutions</div>
+                <a href="../main/main.html">
+                    <div class="top">DOOFAS</div>
+                    <div class="bottom">Innovative Solutions</div>
+                </a>
             </div>
             <ul>
                 <li class="selected">General</li>
@@ -29,22 +31,27 @@
 
             <div class="input-list">
                 <div class="input-item">
-                    <label class="input-label" for="input1">Device ID</label>
-                    <input type="text" id="input1" class="input-field" disabled placeholder="Device ID">
+                    <label class="input-label" for="input1">MAC address</label>
+                    <input type="text" id="input1" class="input-field" disabled placeholder="MAC address">
                 </div>
 
                 <div class="input-item">
-                    <label class="input-label" for="input2">Name</label>
-                    <input type="text" id="input2" class="input-field" placeholder="example: device1">
+                    <label class="input-label" for="input2">IP address</label>
+                    <input type="text" id="input2" class="input-field" disabled placeholder="IP address">
                 </div>
 
                 <div class="input-item">
-                    <label class="input-label" for="input3">Status</label>
-                    <input type="text" id="input3" class="input-field" disabled placeholder="Ready">
+                    <label class="input-label" for="input3">Name</label>
+                    <input type="text" id="input3" class="input-field" placeholder="example: device1">
                 </div>
 
                 <div class="input-item">
-                    <label class="input-label" for="input3">Factory Reset</label>
+                    <label class="input-label" for="input4">Status</label>
+                    <input type="text" id="input4" class="input-field" disabled placeholder="Ready">
+                </div>
+
+                <div class="input-item">
+                    <label class="input-label" for="input5">Factory Reset</label>
                     <button class="button left-button factory-reset-button" id="factory-reset-button">Factory Reset</button>
                 </div>
             </div>

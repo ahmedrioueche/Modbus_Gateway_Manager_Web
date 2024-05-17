@@ -4,23 +4,31 @@
     <head>
         <meta charset="UTF-8" />
         <title>Diagnostics</title>
-        <link rel="stylesheet" href="../../../index.css" />
+        <link rel="stylesheet" href="../../index.css" />
         <script defer type="module" src="../../controller/diagnos/diagnostics.js"></script>
     </head>
 
     <body>
         <div class="container">
             <div class="sidebar diagnos">
-                <div class="logo">
-                    <div class="top">DOOFAS</div>
-                    <div class="bottom">Innovative Solutions</div>
+                <div class="diag-side-container">
+                    <div class="logo">
+                        <a href="../main/main.html">
+                            <div class="top">DOOFAS</div>
+                            <div class="bottom">Innovative Solutions</div>
+                        </a>
+                    </div>
+                    <div class="control-button collapse-button" id="collapse-button"><img src="../../assets/images/left-arrow.png" alt=""></div>
                 </div>
                 <ul>
-                    <li class="clickable">Configure</li>
-                    <li class="selected">Diagnose</li>
-                    <li class="clickable">Settings</li>
-                    <li class="clickable">Help</li>
+                    <li class="clickable" id="configure-button">Configure</li>
+                    <li class="selected" id="diagnose-button">Diagnose</li>
+                    <li class="clickable" id="settings-button">Settings</li>
+                    <li class="clickable" id="help-button">Help</li>
                 </ul>
+            </div>
+            <div class="diagnostics-main-container">
+                
             </div>
             <div class="diagnostics-container">
                 <div class="table-header">
@@ -34,54 +42,28 @@
                 <div class="table-rows packet-container" id="packet-container">
                   
                 </div>
+                <div class="bottom-container">
+                    <div class="control-container">
+                        <div class="control-button" id="start"><img src="../../assets/images/play.png" alt=""></div>
+                        <div class="control-button stop-button-disabled" id="stop"><img src="../../assets/images/stop.png" alt=""></div>
+                        <div class="control-button save-icon" id="save"><img src="../../assets/images/save.png " alt=""></div>
+                        <div class="control-button" id="trash"><img src="../../assets/images/delete.png " alt=""></div>
+                        <div class="control-button search" id="stop"><img src="../../assets/images/tool.png" alt=""></div>
+                        <form class="input-item diag-filter">
+                            <input type="text" id="input" class="input-field" placeholder="Filter">
+                        </form>
+                    </div>
+                    <div class="button-container diagnos">
+                        <button class="button right-button diagnose-button" id="close-button">Quit</button>
+                    </div>
+                </div>
             </div>
             <div class="packet-details-main-container">
                 <div class="packet-details">
-                    <table>
-                        <tr>
-                            <td><strong>Packet number:</strong></td>
-                            <td id="number" class="packet-detail-span"></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Time:</strong></td>
-                            <td id="time" class="packet-detail-span"></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Source:</strong></td>
-                            <td id="source"></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Destination:</strong></td>
-                            <td id="destination"></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Length:</strong></td>
-                            <td id="length"></td>
-                        </tr>
-                        <tr class="rawData-row">
-                            <td class="data"><strong>Raw Data:</strong></td>
-                            <td class="data-container">
-                                <div id="data" class="data-content"></div>
-                            </td>
-                        </tr>     
-                    </table>
+                  
                 </div>
             </div>
-            <div class="bottom-container">
-                <div class="control-container">
-                    <div class="control-button" id="start"><img src="../../assets/images/play.png" alt=""></div>
-                    <div class="control-button stop-button-disabled" id="stop"><img src="../../assets/images/stop.png" alt=""></div>
-                    <div class="control-button save-icon" id="save"><img src="../../assets/images/save.png " alt=""></div>
-                    <div class="control-button" id="trash"><img src="../../assets/images/delete.png " alt=""></div>
-                    <div class="control-button search" id="stop"><img src="../../assets/images/tool.png" alt=""></div>
-                    <form class="input-item diag-filter">
-                        <input type="text" id="input" class="input-field" placeholder="Filter">
-                    </form>
-                </div>
-                <div class="button-container">
-                    <button class="button right-button diagnose-button" id="close-button">Quit</button>
-                </div>
-            </div>
+        
         </div>
     </body>
 

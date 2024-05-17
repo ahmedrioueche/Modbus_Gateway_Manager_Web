@@ -1,17 +1,13 @@
+/*========================Brief================================
+This file handles: 
+    -Packet reception
+    -Packet breakdown
+    -Packet display
+
+===============================================================*/
+
 document.addEventListener("DOMContentLoaded", async () => {
-
-    let networkIP, remoteIP, mbMode;
-    const device = await window.serialAPI.getOpenedDevice();
-    let storedDevices = JSON.parse(localStorage.getItem('devices')) || [];
-    storedDevices.forEach(storedDevice => {
-        const deviceId = `${storedDevice.vendorId}-${storedDevice.productId}`;
-        if(storedDevice.id === deviceId){
-            networkIP = storedDevice.networkIP;
-            remoteIP = storedDevice.remoteIP;
-            mbMode = storedDevice.mode;
-        }
-    })      
-
+    /*
     let packetsBuffer = []; let startTime; 
     window.serialAPI.getPacketData(recPacket => {
         if(!startTime)
@@ -124,6 +120,133 @@ document.addEventListener("DOMContentLoaded", async () => {
             createPacketUI(packet);
         }
     })
+*/
+    let packetData1 = {
+        "packetSource": "TCP Client",
+        "packetDestination": "TCP Server",
+        "Slave ID": "3",
+        "Function Code": "01",
+        "Starting Address": "0x22FF",
+        "Quantity": "10",
+        "Exception Code": null,
+        "CRC": "CA 34 E6 56",
+        "Transaction ID": "1",
+        "Protocol ID": "1",
+        "Message Length": 10,
+        "Unit ID": "2",
+        "Data": "23 86 03 F9 D2 A9 45 45"
+    };
+
+    let packetData2 = {
+        "packetSource": "RTU Client",
+        "packetDestination": "RTU Server",
+        "Slave ID": "3",
+        "Function Code": "02",
+        "Starting Address": "0x22FF",
+        "Quantity": "10",
+        "Exception Code": null,
+        "CRC": "BA 34 E6 56",
+        "Transaction ID": "2",
+        "Protocol ID": "1",
+        "Message Length": 10,
+        "Unit ID": "2",
+        "Data": "23 86 03 F9 D2 A9 45 45"
+    };
+
+    let packetData3 = {
+        "packetSource": "RTU Server",
+        "packetDestination": "RTU Client",
+        "Slave ID": "3",
+        "Function Code": "03",
+        "Starting Address": "0x22FF",
+        "Quantity": "10",
+        "Exception Code": null,
+        "CRC": "AA 34 E6 56",
+        "Transaction ID": "3",
+        "Protocol ID": "1",
+        "Message Length": 10,
+        "Unit ID": "2",
+        "Data": "23 86 03 F9 D2 A9 45 45"
+    };
+
+    let packetData4 = {
+        "packetSource": "TCP Server",
+        "packetDestination": "TCP Client",
+        "Slave ID": "3",
+        "Function Code": "04",
+        "Starting Address": "0x22FF",
+        "Quantity": "10",
+        "Exception Code": null,
+        "CRC": "CA 34 E6 56",
+        "Transaction ID": "4",
+        "Protocol ID": "1",
+        "Message Length": 10,
+        "Unit ID": "2",
+        "Data": "23 86 03 F9 D2 A9 45 45"
+    };
+
+    // Create packets with distinct packetData objects
+    const packet1 = {
+        type: 1,
+        number: 1,
+        time: 0.00001,
+        source: "TCP Client",
+        destination: "TCP SERVER",
+        length: "22", 
+        rawData: "FF D4 23 AE 11 55",
+        packetData: packetData1,
+    };
+
+    const packet2 = {
+        type: 2,
+        number: 2,
+        time: 0.000010,
+        source: "RTU CLIENT",
+        destination: "RTU SERVER",
+        length: "22", 
+        rawData: "FF D4 23 AE 11 55",
+        packetData: packetData2,
+    };
+
+    const packet3 = {
+        type: 3,
+        number: 3,
+        time: 0.004060,
+        source: "RTU SERVER",
+        destination: "RTU CLIENT",
+        length: "22", 
+        rawData: "FF D4 23 AE 11 55",
+        packetData: packetData3,
+    };
+
+    const packet4 = {
+        type: 4,
+        number: 4,
+        time: 0.020250,
+        source: "TCP SERVER",
+        destination: "TCP CLIENT",
+        length: "22", 
+        rawData: "FF D4 23 AE 11 55",
+        packetData: packetData4,
+    };
+
+    createPacketUI(packet1);
+    createPacketUI(packet2);
+    createPacketUI(packet3);
+    createPacketUI(packet4);
+    createPacketUI(packet1);
+    createPacketUI(packet2);
+    createPacketUI(packet3);
+    createPacketUI(packet4);
+    createPacketUI(packet1);
+    createPacketUI(packet2);
+    createPacketUI(packet3);
+    createPacketUI(packet4);
+    createPacketUI(packet1);
+    createPacketUI(packet2);
+    createPacketUI(packet3);
+    createPacketUI(packet4);
+
 
     function createPacketUI(packet){
         const packetContainer = document.getElementById("packet-container");
@@ -140,8 +263,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         
         colorPacketRow(packet, packetEl);
         packetEl.addEventListener("click", ()=>{
-            window.serialAPI.savePacketData(packet);
-            window.mainAPI.createPacketDetailsWindow();
+
+        })
+
+        packetEl.addEventListener("mouseover", ()=>{
+            console.log("mouseover")
+            fillPacketDataUI(packet);
         })
     
         const packetElements = [numberEl, timeEl, sourceEl, destinationEl, lengthEl, dataEl];
@@ -246,6 +373,97 @@ document.addEventListener("DOMContentLoaded", async () => {
         packetEl.appendChild(packetErrorText);
         packetContainer.appendChild(packetEl);
     }
+
+    //=======================Packet details===========================//
+        const modbusFunctionCodes = {
+          1: "Read Coils",
+          2: "Read Discrete Inputs",
+          3: "Read Holding Registers",
+          4: "Read Input Registers",
+          5: "Write Single Coil",
+          6: "Write Single Holding Register",
+          15: "Write Multiple Coils",
+          16: "Write Multiple Holding Registers"
+        };
+      
+        const modbusExceptionCodes = {
+          1: "Illegal Function",
+          2: "Illegal Data Address",
+          3: "Illegal Data Value",
+          4: "Server Device Failure",
+          5: "Acknowledge",
+          6: "Server Device Busy",
+          10: "Gateway Path Unavailable",
+          11: "Gateway Target Device Failed to Respond"
+        };
+
+    const container = document.querySelector(".packet-details");
+    
+    // Function to fill packet data in the UI
+    function fillPacketDataUI(packet) {
+        console.log("packet in packet", packet)
+        container.innerHTML = "";
+        const table = document.createElement('table');
+        let counter = 0;
+        for (const key in packet.packetData) {
+            if (Object.hasOwnProperty.call(packet.packetData, key)) {
+                if (counter > 1) {
+                    let normalValue, exceptionText = "";
+                    const value = packet.packetData[key];
+
+                    if (value && key !== "CRC") {
+                        const row = document.createElement('tr');
+                        const labelCell = document.createElement('td');
+                        const valueCell = document.createElement('td');
+                        valueCell.textContent = value;
+                        labelCell.innerHTML = `<strong>${key}</strong>`;
+
+                        row.appendChild(labelCell);
+                        row.appendChild(valueCell);
+                        table.appendChild(row);
+
+                        // Check for an exception
+                        if (key === "Function Code") {
+                            if (value > 80) {
+                                normalValue = value - 80;
+                                exceptionText = " Exception: Couldn't";
+                            } else {
+                                normalValue = parseInt(value.toString(), 10);
+                            }
+                            console.log("normalValue", normalValue)
+                            valueCell.textContent += exceptionText + " " + modbusFunctionCodes[normalValue];
+                        }
+
+                        if (key === "Exception Code") {
+                            normalValue = parseInt(value.toString(), 10);
+                            valueCell.textContent += " " + modbusExceptionCodes[normalValue];
+                        }
+                    }
+                }
+                counter++;
+            }
+        }
+
+        // Let CRC be last
+        if (packet.packetData.hasOwnProperty("CRC")) {
+            const crcValue = packet.packetData["CRC"];
+            if (crcValue) {
+                const crcRow = document.createElement('tr');
+                const crcLabelCell = document.createElement('td');
+                const crcValueCell = document.createElement('td');
+
+                crcLabelCell.innerHTML = `<strong>CRC</strong>`;
+                crcValueCell.textContent = crcValue;
+
+                crcRow.appendChild(crcLabelCell);
+                crcRow.appendChild(crcValueCell);
+                table.appendChild(crcRow);
+            }
+        }
+        container.appendChild(table);
+    }
+
+    //=================================================================//
   
     const searchIcon = document.querySelector(".search img");
     const searchBarForm = document.querySelector(".diag-filter");
@@ -357,8 +575,30 @@ document.addEventListener("DOMContentLoaded", async () => {
         window.serialAPI.sendPackets(packetsBuffer);
     })
 
-    document.getElementById("close-button").addEventListener("click", ()=> {
+    document.getElementById("configure-button").addEventListener("click", () => {
+        console.log("configure")
+        window.location.href = "../../views/config/general-config.html"
+    });
+
+    const closeButton = document.getElementById("close-button");
+    closeButton.addEventListener("click", ()=> {
         window.location.href = "../../views/main/main.html"
+    })
+
+    const collapseButton = document.getElementById("collapse-button");
+    const sideBarEl =  document.querySelector(".sidebar");
+    const logoEl =  document.querySelector(".logo");
+    const ulEl = document.querySelector('ul');
+    const diagTableEl = document.querySelector('.diagnostics-container');
+    const packetDetailtTableEl = document.querySelector(".packet-details-main-container");
+    collapseButton.addEventListener("click", ()=> {
+        sideBarEl.classList.toggle("collapsed");
+        logoEl.classList.toggle("collapsed");
+        ulEl.classList.toggle("collapsed");
+        collapseButton.classList.toggle("collapsed");
+        diagTableEl.classList.toggle("collapsed");
+        closeButton.classList.toggle("collapsed");
+        packetDetailtTableEl.classList.toggle("collapsed");
     })
 });
 

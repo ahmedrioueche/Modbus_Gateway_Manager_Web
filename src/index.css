@@ -40,7 +40,11 @@ body, html {
     font-weight: bold;
     margin-bottom: 10px;
     text-align: center;
+}
 
+a {
+    text-decoration: none;
+    color: var(--mainColor);
 }
 
 .menu-container {
@@ -148,7 +152,7 @@ h1 {
 .button-container {
     position: fixed;
     bottom: 10px; 
-    right: 87px; 
+    right: 7.5%;
     margin-bottom: 10px;
 }
 
@@ -230,7 +234,8 @@ h1 {
     box-sizing: border-box;
     overflow: auto;
     margin-left: 60px;
-    margin-top: 3px;
+    margin-top: 0px;
+    flex-direction: column; 
 }
 
 .button-config {
@@ -248,7 +253,7 @@ h2 {
     color: var(--mainColor);
     text-align: center;
     margin-right: 90px;
-    margin-top: 20px;
+    margin-top: 0px;
     margin-bottom: 35px;
 }
 
@@ -362,6 +367,7 @@ input {
     margin-left: 45px;
 }
 
+
 /*-----checkbox---------*/
 .checkbox-list {
     display: flex;
@@ -415,6 +421,7 @@ input {
 /*-------input-box--------*/
 .input-list {
     max-width: 400px;
+    max-height: 365px;
     margin: 50px auto;
     background-color: #fff;
     padding: 20px;
@@ -422,9 +429,9 @@ input {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-left: 15%;
     margin-bottom: 0;
-    margin-top: 30px;
-    max-height: 380px;
+    margin-top: 0 !important;
     overflow: auto;
+    flex: 1; 
 }
 
 .input-item {
@@ -479,7 +486,7 @@ input {
 
 .select-field option:checked {
     background-color: var(--secondaryColor);
-    color: #fff;
+    color: var(--mainColor);
 }
 
 .settings-window .select-field {
@@ -517,9 +524,9 @@ input {
 }
 
 .error {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     font-weight: bold;
-    margin-top: 5px;
+    margin-top: 6px;
     color: var(--dangerColor);
 }
 
@@ -581,6 +588,8 @@ input {
     margin: 0;
     padding: 0;
     width: 50%;
+    overflow-y: auto; 
+    box-sizing: border-box;
 }
 
 .diagnostics-container .table-header {
@@ -591,22 +600,48 @@ input {
 
 .diagnostics-container .table-header .column:nth-child(1),
 .packet-row .column:nth-child(1) {
-    max-width: 50px !important;
+    max-width: 10% !important;
 }
 
 .diagnostics-container .table-header .column:nth-child(2),
 .packet-row .column:nth-child(2) {
-    max-width: 90px;
+    max-width: 10%;
+}
+
+.diagnostics-container .table-header .column:nth-child(3),
+.packet-row .column:nth-child(3) {
+    max-width: 15%;
+}
+
+.diagnostics-container .table-header .column:nth-child(4),
+.packet-row .column:nth-child(4) {
+    max-width: 15%;
 }
 
 .diagnostics-container .table-header .column:nth-child(5),
 .packet-row .column:nth-child(5) {
-    max-width: 90px;
+    width: 7%;
+    margin-left: -20px;
+}
+
+.diagnostics-container .table-header .column:nth-child(6),
+.packet-row .column:nth-child(6) {
+    width: 30%;
+    text-overflow: ellipsis; 
+    padding: 10px 0 10px;
+}
+
+#close-button {
+    margin-right: 200px;
+    margin-bottom: -5px;
+    width: auto;
 }
 
 .packet-row {
     cursor: pointer;
     height: 40px;
+    display: flex;
+    flex-direction: row;
 }
 
 .packet-row.type-1 {
@@ -632,8 +667,8 @@ input {
 }
 
 .packet-row:hover {
-    background-color: var(--secondaryColor);
-    color: white;
+    background-color: var(--sideColor);
+    color: var(--mainColor);
 }
 
 .diagnostics-container .packet-row .column {
@@ -642,18 +677,14 @@ input {
     font-size: 0.9rem;
 }
 
-.diagnose-button {
-    margin-bottom: -5px;
-    margin-right: 175px;
-    width: auto;
-    position: relative;
-}
-
 .bottom-container {
     display: flex;
     flex-direction: row;
     height: 200px;
     margin-bottom: 0;
+    background-color: black !important; 
+    position: fixed;
+    z-index: 100000;
 }
 
 .control-container {
@@ -661,7 +692,6 @@ input {
     flex-direction: row;
     position: fixed;
     align-items: center;
-    margin-left: -870px;
     bottom: 0;
     margin-bottom: 14px;
 }
@@ -693,7 +723,7 @@ input {
 }
 
 .play-button-disabled img {
-    content: url("../assets/images/play-disabled.png");
+    content: url("./assets/images/play-disabled.png");
     cursor: auto;
 }
 
@@ -707,7 +737,7 @@ input {
 }
 
 .stop-button-disabled img {
-    content: url("../assets/images/stop-disabled.png");
+    content: url("./assets/images/stop-disabled.png");
     cursor: auto;
 }
 
@@ -763,7 +793,7 @@ input {
 .packet-details-main-container {
     padding: 20px 20px 0 20px;
     width: 17.5%;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .packet-details-main-container h4 {
@@ -831,3 +861,57 @@ table td {
 #macAddressInput {
     margin-bottom: 5px;
 }
+
+.diag-side-container {
+    display: flex;
+    flex-direction: row;
+    margin-left: 60px;
+}
+
+.collapse-button {
+    margin-top: -15px;
+}
+
+
+.sidebar.collapsed {
+    width: 5%;
+}
+
+.logo.collapsed {
+    display: none;
+}
+
+ul.collapsed {
+    display: none;
+}
+
+.collapse-button.collapsed img {
+    content: url("./assets/images/right-arrow.png");
+    margin-left: -80px;
+    z-index: 1000;
+}
+
+.diagnostics-container.collapsed {
+    width: 70%;
+}
+
+#close-button.collapsed {
+    margin-right: 330px;
+}
+
+.packet-details-main-container.collapsed {
+    width: 30%;
+}
+
+
+
+/*--------Responsivness--------------------*/
+@media (max-width: 968px) {
+
+    .diagnostics-container .table-header .column:nth-child(6),
+    .packet-row .column:nth-child(6) {
+      display: none;
+    }
+
+}
+

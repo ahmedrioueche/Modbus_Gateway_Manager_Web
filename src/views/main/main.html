@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gateway Manager</title>
-    <link rel="stylesheet" href="../../../index.css" />
+    <link rel="stylesheet" href="../../index.css" />
     <script type="module" src="../../controller/main/main.js"></script>
 </head>
 
@@ -13,14 +13,16 @@
     <div class="container">
         <div class="sidebar main">
             <div class="logo">
-                <div class="top">DOOFAS</div>
-                <div class="bottom">Innovative Solutions</div>
+                <a href="../main/main.html">
+                    <div class="top">DOOFAS</div>
+                    <div class="bottom">Innovative Solutions</div>
+                </a>
             </div>
             <ul>
-                <li class="clickable">Configure</li>
-                <li class="clickable">Diagnose</li>
-                <li class="clickable">Settings</li>
-                <li class="clickable">Help</li>
+                <li class="clickable" id="configure-button">Configure</li>
+                <li class="clickable" id="diagnose-button">Diagnose</li>
+                <li class="clickable" id="settings-button">Settings</li>
+                <li class="clickable" id="help-button">Help</li>
             </ul>
         </div>
         <div class="device-container">
