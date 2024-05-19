@@ -55,11 +55,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     configureButton.addEventListener("click", () => {
         console.log("configure")
-        window.location.href = "../../views/config/general-config.html"
+        window.location.href = "/views/config/general-config.html"
     });
     
     diagnoseButton.addEventListener("click", () => {
-        window.location.href = "../../views/diagnos/diagnostics.html"
+        window.location.href = "/views/diagnos/diagnostics.html"
     })
 
     document.getElementById("settings-button").addEventListener("click", () => {

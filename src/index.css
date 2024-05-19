@@ -629,6 +629,11 @@ input {
     width: 30%;
     text-overflow: ellipsis; 
     padding: 10px 0 10px;
+    text-align: center;
+}
+
+.diagnostics-container .table-header .column:nth-child(5) {
+    margin-left: -40px;
 }
 
 #close-button {
@@ -761,6 +766,7 @@ input {
     margin-bottom: 0;
     display: none;
     transition: all 0.6s ease; 
+    border: 1px solid var(--sideColor);
 }
 
 .diag-filter input {

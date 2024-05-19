@@ -1,5 +1,11 @@
-document.addEventListener('DOMContentLoaded', async () => {
-    const randomMacAddress = "3F:5C:DD:56:33:11";
+
+    /*========================Brief================================
+    This file handles: 
+
+
+    ===============================================================*/
+    
+    
     let storedDevices = JSON.parse(localStorage.getItem('devices')) || [];
     let deviceId = await getConfigDeviceId();
 
@@ -76,14 +82,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
         localStorage.setItem('devices', JSON.stringify(storedDevices));
     }
-
-    async function getConfigDeviceId(){
-        //get config device mac address
-        //const configDevice = await getOpenedDevice();
-        //const deviceId = `${configDevice.vendorId}-${configDevice.productId}`;
-        const deviceMacAddress = randomMacAddress;
-        return deviceMacAddress;
-    }
     
     function isValidInput(input){
         if(input == "undefined" || input == '[object Object]')
@@ -97,6 +95,5 @@ document.addEventListener('DOMContentLoaded', async () => {
         window.location.href = "../../views/config/mode-config.html"
     })
 
-});
 
 

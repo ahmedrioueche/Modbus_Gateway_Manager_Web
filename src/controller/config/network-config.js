@@ -1,6 +1,15 @@
-document.addEventListener('DOMContentLoaded', async () => {
-    const randomMacAddress = "3F:5C:DD:56:33:11";
 
+/*========================Brief================================
+This file handles: 
+    -Retrieving and checking user input for Network data  
+    -Structuring a configuration buffer from stored data in 
+    local storage + network data
+    -Sending the config buffer via http post request
+    -Saving the network data in local storage
+
+===============================================================*/
+
+/*----------------------Global variables---------------------------------*/
     let configDevice;
     document.querySelectorAll('.input-item').forEach(inputItem => {
         const errorDiv = inputItem.querySelector(".error");
@@ -71,7 +80,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (selectedMode == "RTU Server Mode") 
           configBuffer.push(storedDevices[deviceIndex].remoteIP);
 
-        //window.serialAPI.sendConfigData(configBuffer, configDevice);
+        apiPostData("/api/config", configBuffer);
     }
 
     function saveNetworkData(){
@@ -122,14 +131,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         return dataValid;
     }
-   
-    async function getConfigDeviceId(){
-        //get config device mac address
-        //const configDevice = await getOpenedDevice();
-        //const deviceId = `${configDevice.vendorId}-${configDevice.productId}`;
-        const deviceMacAddress = randomMacAddress;
-        return deviceMacAddress;
-    }
 
     function isValidInput(input){
         if(input === undefined || input === '[object Object]')
@@ -153,5 +154,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById("previous-button").addEventListener('click', () => {
         window.location.href = "../../views/config/serial-config.html"
     })
-});
+
 

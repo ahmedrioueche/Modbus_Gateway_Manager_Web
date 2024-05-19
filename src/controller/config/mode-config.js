@@ -40,14 +40,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById("previous-button").addEventListener("click", () => {
         window.location.href = "../../views/config/general-config.html"
     })
-
-    async function getConfigDeviceId(){
-        //get config device mac address
-        //const configDevice = await getOpenedDevice();
-        //const deviceId = `${configDevice.vendorId}-${configDevice.productId}`;
-        const deviceMacAddress = randomMacAddress;
-        return deviceMacAddress;
-    }
-    
 });
 

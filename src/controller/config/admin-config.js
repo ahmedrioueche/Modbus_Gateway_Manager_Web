@@ -1,26 +1,11 @@
-document.addEventListener('DOMContentLoaded', async () => {
-    const status =  {
-        VALID: "no error",
-        VOID_MAC_ADDRESS: "void MAC address",
-        INVALID_MAC_ADDRESS: "invalid MAC address"
-    }
+       
+    /*========================Brief================================
+    This file handles: 
+        
 
-    let defaultMacAddress = [0x00, 0x80, 0xE1, 0x00, 0x00, 0x55];
-    let defaultDeviceConfig = {
-        name:"MODBUS Gateway",
-        mode: "RTU Server Mode",
-        baudrate: "9600",
-        parity: "None",
-        stopBits: "1",
-        dataSize: "8",
-        macAddress: defaultMacAddress,
-        slaveID: 5,
-        networkIP: "192.168.5.10",
-        networkMask: "255.255.255.0",
-        networkGateway: "192.168.5.1",
-        remoteIP: "192.168.5.20",
-    }
 
+    ===============================================================*/
+ 
     localStorage.setItem('defaultDeviceConfig', JSON.stringify(defaultDeviceConfig));
 
     const container = document.querySelector(".config-content");
@@ -66,11 +51,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     
             const newErrorDiv = document.createElement("div");
             newErrorDiv.classList.add("error");
-            if(result === status.VOID_MAC_ADDRESS){
+            if(result === status.VOID){
                 newErrorDiv.textContent = "Please fill in this field";
                 macAddressDiv.appendChild(newErrorDiv);
             }
-            else if(result === status.INVALID_MAC_ADDRESS){
+            else if(result === status.INVALID){
                 newErrorDiv.textContent = "Please check the integrity of the data";
                 macAddressDiv.appendChild(newErrorDiv);
             }
@@ -83,10 +68,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         var macAddressRegex = /^(([0-9A-Fa-f]{2}|[0-9A-Fa-f]{1})[:-]){5}([0-9A-Fa-f]{2}|[0-9A-Fa-f]{1})$/;
         console.log("macAddress", macAddress)
         if(!macAddress)
-            return status.VOID_MAC_ADDRESS;
+            return status.VOID;
 
         if (!macAddressRegex.test(macAddress)) {
-            return status.INVALID_MAC_ADDRESS;
+            return status.INVALID;
         }
 
         return status.VALID;
@@ -131,4 +116,3 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById("cancel-button").addEventListener("click", () => {
         window.mainAPI.closeWindow(1); //config window index = 1
     })
-})

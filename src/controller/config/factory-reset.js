@@ -1,4 +1,3 @@
-document.addEventListener("DOMContentLoaded", async ()=> {
 
     let deviceId = await getConfigDeviceId();
     let storedDevices = JSON.parse(localStorage.getItem('devices')) || [];
@@ -30,14 +29,8 @@ document.addEventListener("DOMContentLoaded", async ()=> {
         localStorage.setItem('devices', JSON.stringify(storedDevices));
     }
 
-    async function getConfigDeviceId(){
-        const configDevice = await window.serialAPI.getOpenedDevice();
-        const deviceId = `${configDevice.vendorId}-${configDevice.productId}`;
-        return deviceId;
-    }
-
     document.getElementById("cancel-button").addEventListener("click", () => {
         window.mainAPI.closeWindow(2); //factory reset window index = 2
     })
-})
+
  
